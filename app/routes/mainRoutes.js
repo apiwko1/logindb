@@ -1,11 +1,9 @@
 const express = require('express');
 const router = express.Router();
-
 const bcrypt = require('bcrypt');
-
 const passport = require('passport');
 
-const users = [];
+
 const userController = require('./../controllers/user.controller');
 
 function checkAuthenticated(req, res, next) {
@@ -25,7 +23,9 @@ function checkNotAuthenticated(req, res, next) {
 }
 
 router.get('/', checkAuthenticated, (req, res) => {
-    res.render('index', { name: req.user.email });
+    // console.log(req.user);
+    // res.render('index', { name: req.user.username });
+    res.send(req.user);
 })
 
 

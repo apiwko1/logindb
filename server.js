@@ -38,8 +38,7 @@ app.set('views', path.join(__dirname, './views'));
 app.use(urlencoded({ extended: false }))
 
 app.use(flash());
-console.log('process.env.SESSION_SECRET');
-console.log(process.env.SESSION_SECRET);
+
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
@@ -56,5 +55,8 @@ app.use(methodOverride('_method'));
 const mainRouter = require('./app/routes/mainRoutes');
 const { db } = require('./app/models/User');
 app.use('/', mainRouter);
+
+const clientsRouter = require('./app/routes/clientRoutes');
+app.use('/clients', clientsRouter);
 
 app.listen(8080);
