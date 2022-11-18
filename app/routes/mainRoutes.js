@@ -22,10 +22,13 @@ function checkNotAuthenticated(req, res, next) {
     res.redirect('/');
 }
 
-router.get('/', checkAuthenticated, (req, res) => {
-    // console.log(req.user);
-    // res.render('index', { name: req.user.username });
-    res.send(req.user);
+router.get('/', checkAuthenticated, async (req, res) => {
+    const user = await req.user;
+    console.log(user);
+    
+    res.render('index', { name: req.user.name });
+    // res.redirect('/clients');
+    // res.send(req.user);
 })
 
 

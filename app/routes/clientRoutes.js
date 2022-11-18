@@ -3,8 +3,16 @@ const router = express.Router();
 const clientController = require('./../controllers/client.controller')
 
 
-router.get('/', (req, res) => {
-    res.render('clients');
+router.get('/', async (req, res) => {
+    const clients = await  clientController.list();
+    console.log(clients);
+    res.render('clients', {clients});
+})
+
+router.get('/details/:id', async (req, res) => {
+    let id = req.params.id;
+    const client = await clientController.getById({'_id': id});
+    res.render('clientDetails', client);
 })
 
 router.post('/add', async (req, res) => {
@@ -19,8 +27,7 @@ router.post('/add', async (req, res) => {
         console.log(data);
         await clientController.add(data, (err, client) => {
             console.log(client);
-        })
-        console.log('abc');
+        })        
         res.redirect('/clients');
 
     } catch (e) {

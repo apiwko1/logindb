@@ -1,4 +1,7 @@
+{{>logout}}
 <h1>Klienci</h1>
+
+<h2>Dodaj klienta</h2>
 <form action="/clients/add" method="post">
     <div>
         <label for="name">Nazwa</label>
@@ -17,7 +20,18 @@
         <input type="text" name="nip" id="nip">
     </div>
     <div>
-        <button type="submit">Wyślij</button>
+        <button type="submit">Dodaj</button>
     </div>
 
 </form>
+
+<h2>Lista</h2>
+<table>
+    {{#each clients}}
+    <tr>
+        <td>ul. {{street}}, {{city}}</td>
+        <td>{{nip}}</td>
+        <td><a href="/clients/details/{{_id}}">Szczegóły </a></td>
+    </tr>
+    {{/each}}
+</table>
