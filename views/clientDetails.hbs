@@ -1,14 +1,55 @@
 <section>
-    <div>Nazwa: {{name}}</div>
-    <div>ul. {{street}}, {{city}}</div>
-    <div>NIP: {{nip}} </div>
+    <div>Nazwa: {{client.name}}</div>
+    <div>ul. {{client.street}}, {{client.city}}</div>
+    <div>NIP: {{client.nip}} </div>
 </section>
 <section>
     <table>
-        
+        <tr>
+
+        </tr>
     </table>
 </section>
+<section>
+    <h2>Dodaj</h2>
+    <form action="/clients/addAction" method="post">
+        <div>
+            <label for="date">Data</label>
+            <input type="text" name="date" id="date">
+        </div>
+        <div>
+            <label for="type">Typ kontaktu</label>
+            <input type="text" name="type" id="type">
+        </div>
+        <div>
+            <label for="desc">Opis</label>
+            <textarea name="desc" id="desc" ></textarea>
+        </div>
+        <input type="hidden" name="clientId" value="{{client._id}}">
+        <button type="submit">Dodaj akcję</button>
 
+
+    </form>
+</section>
+<section>
+    <h2>Lista</h2>
+    <table>
+        <tr>
+            <th>Data</th>
+            <th>Typ</th>
+            <th>Opis</th>
+        </tr>
+        {{#each actions}}
+        <tr>
+            <td>
+                {{date}}
+            </td>
+            <td>{{type}}</td>
+            <td>{{description}}</td>
+        </tr>
+        {{/each}}
+    </table>
+</section>
 <section>
     <a href="/clients">Powrót</a>
 </section>

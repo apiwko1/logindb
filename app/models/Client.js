@@ -5,6 +5,10 @@ mongoose.connect('mongodb://127.0.0.1:27017/crm', {
 });
 
 const schema = mongoose.Schema({
+    user: {
+        type: mongoose.Types.ObjectId,
+        ref: 'User'
+    },
     name: {
         type: String,
         required: true
